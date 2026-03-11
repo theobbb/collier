@@ -39,8 +39,8 @@
 				md: 'min-w-32 gap-1.5 px-3 py-1.5 tracking-wide',
 				lg: 'min-w-48 gap-2 px-4 py-2.5 text-lg',
 				icon_sm: 'p-0.5 text-sm',
-				icon_md: 'p-1 text-base',
-				icon_lg: 'p-1.5 text-lg'
+				icon_md: 'p-1 text-lg',
+				icon_lg: 'p-1.5 text-2xl'
 			}
 		}
 	);

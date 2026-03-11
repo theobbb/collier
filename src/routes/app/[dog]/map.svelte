@@ -3,18 +3,14 @@
 	import 'maplibre-gl/dist/maplibre-gl.css';
 	import type { Map as MapLibreMap, Marker } from 'maplibre-gl';
 	import { data, type Dog } from '$lib/data.svelte';
+	import { dev } from '$app/environment';
+
+	const PAUSED = !dev || true;
 
 	type WalkingDog = Dog & {
 		speed: number;
 		path: [number, number][];
 	};
-	// interface Dog {
-	// 	name: string;
-	// 	emoji: string;
-	// 	color: string;
-	// 	speed: number;
-	// 	path: [number, number][];
-	// }
 
 	let mapContainer: HTMLDivElement;
 	let map: MapLibreMap;
@@ -60,11 +56,12 @@
 	const CENTER: [number, number] = [-73.562185, 45.512756];
 
 	const paths: [number, number][][] = [
-		generateSquarePath(CENTER, 0.004, 0, 0, 0),
 		generateSquarePath(CENTER, 0.006, 0.003, 0.001, 45),
+		generateSquarePath(CENTER, 0.004, 0, 0, 0),
+
 		generateSquarePath(CENTER, 0.003, -0.003, -0.002, 15)
 	];
-	const speeds = [1, 1.5, 0.6];
+	const speeds = [1.5, 0.4, 1];
 
 	const dogs: WalkingDog[] = $derived(
 		[...data.dogs].map((dog, i) => ({
@@ -73,7 +70,7 @@
 			path: paths[i % paths.length]
 		}))
 	);
-	$inspect(dogs);
+
 	// const dogs: WalkingDog[] = [
 	// 	{
 	// 		name: 'Biscuit',
@@ -145,6 +142,7 @@
 	// }
 
 	onMount(async () => {
+		if (PAUSED) return;
 		const maplibregl = (await import('maplibre-gl')).default;
 
 		map = new maplibregl.Map({
@@ -161,8 +159,23 @@
 			const style = map.getStyle();
 			if (style && style.layers) {
 				style.layers.forEach((layer) => {
-					if (layer.type === 'symbol' && layer.layout && layer.layout['text-field']) {
-						// Coalesce looks for 'name:fr' first, and falls back to default 'name' if French isn't available
+					const id = layer.id;
+
+					const isTransit =
+						id.includes('transit') ||
+						id.includes('subway') ||
+						id.includes('metro') ||
+						id.includes('railway') ||
+						id.includes('rail');
+
+					if (isTransit) {
+						map.setLayoutProperty(id, 'visibility', 'none');
+					}
+				});
+
+				// Keep your French label logic separate
+				style.layers.forEach((layer) => {
+					if (layer.type === 'symbol' && layer.layout?.['text-field']) {
 						map.setLayoutProperty(layer.id, 'text-field', [
 							'coalesce',
 							['get', 'name:fr'],
@@ -241,118 +254,17 @@
 	});
 </script>
 
-<div class="root">
-	<header class="bar">
-		<span class="bar-title">🐾 PawWatch</span>
-		<div class="bar-dogs">
-			{#each dogs as dog}
-				<span class="dog-tag" style="--c: {dog.color}">
-					<span class="dot"></span>{dog.name}
-					{dog.name}
-				</span>
-			{/each}
-		</div>
-		<span class="live">● live</span>
-	</header>
-
-	<div class="map-wrap">
-		<div bind:this={mapContainer} class="map"></div>
+<div class="fixed inset-0 flex h-svh flex-col">
+	<div class="relative flex-1">
+		<div bind:this={mapContainer} class="map h-full w-full"></div>
 	</div>
 </div>
 
 <style>
-	:global(*, *::before, *::after) {
-		box-sizing: border-box;
-		margin: 0;
-		padding: 0;
-	}
-
-	.root {
-		font-family: 'IBM Plex Mono', monospace;
-		height: 100vh;
-		display: flex;
-		flex-direction: column;
-		background: #f5f4f0;
-	}
-
-	/* ── Top bar ── */
-	.bar {
-		display: flex;
-		align-items: center;
-		gap: 20px;
-		padding: 0 20px;
-		height: 48px;
-		background: #f5f4f0;
-		border-bottom: 1px solid #d8d6cf;
-		flex-shrink: 0;
-	}
-
-	.bar-title {
-		font-size: 0.8rem;
-		font-weight: 500;
-		letter-spacing: 0.04em;
-		color: #1a1a1a;
-		white-space: nowrap;
-	}
-
-	.bar-dogs {
-		display: flex;
-		gap: 12px;
-		flex: 1;
-	}
-
-	.dog-tag {
-		display: flex;
-		align-items: center;
-		gap: 5px;
-		font-size: 0.7rem;
-		color: #444;
-		letter-spacing: 0.03em;
-	}
-
-	.dot {
-		width: 6px;
-		height: 6px;
-		border-radius: 50%;
-		background: var(--c);
-		animation: blink 1.6s ease-in-out infinite;
-		flex-shrink: 0;
-	}
-
-	@keyframes blink {
-		0%,
-		100% {
-			opacity: 1;
-		}
-		50% {
-			opacity: 0.25;
-		}
-	}
-
-	.live {
-		font-size: 0.65rem;
-		color: #2a9d5c;
-		letter-spacing: 0.08em;
-		animation: blink 1.6s ease-in-out infinite;
-		white-space: nowrap;
-	}
-
-	/* ── Map ── */
-	.map-wrap {
-		flex: 1;
-		position: relative;
-	}
-
-	.map {
-		width: 100%;
-		height: 100%;
-	}
-
 	/* Remove MapLibre default controls chrome */
 	:global(.maplibregl-ctrl-logo),
 	:global(.maplibregl-ctrl-attrib) {
-		opacity: 0.35 !important;
-		font-size: 0.55rem !important;
+		opacity: 0 !important;
 	}
 
 	/* ── Markers (injected into DOM, must be global) ── */
@@ -378,33 +290,7 @@
 		box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
 	}
 
-	:global(.dog-emoji) {
-		font-size: 1.1rem;
-		line-height: 1;
-	}
-
-	:global(.dog-pulse) {
-		position: absolute;
-		inset: -5px;
-		border-radius: 50%;
-		border: 1.5px solid var(--dog-color);
-		opacity: 0;
-		animation: pulse 2.2s ease-out infinite;
-	}
-
-	@keyframes pulse {
-		0% {
-			transform: scale(0.85);
-			opacity: 0.6;
-		}
-		100% {
-			transform: scale(1.9);
-			opacity: 0;
-		}
-	}
-
 	:global(.dog-label) {
-		font-family: 'IBM Plex Mono', monospace;
 		font-size: 0.58rem;
 		letter-spacing: 0.04em;
 		color: #1a1a1a;

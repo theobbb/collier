@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { page } from '$app/state';
 	import { data } from '$lib/data.svelte';
 	import Avatar from '$lib/ui/components/avatar.svelte';
 
@@ -33,8 +32,7 @@
 		{#each track as dog, i (dog.key)}
 			{@const is_current = data.current_dog === dog.i}
 
-			<a
-				href={page.route.id?.replace('[dog]', dog.i)}
+			<button
 				class="flex shrink-0 cursor-pointer flex-col items-center transition-all duration-300"
 				style="flex: 0 0 33.33333%;"
 				onclick={() => {
@@ -60,7 +58,7 @@
 				>
 					{dog.name}
 				</div>
-			</a>
+			</button>
 		{/each}
 	</div>
 </div>
