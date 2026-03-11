@@ -6,14 +6,13 @@
 
 	const options = {
 		sm: '24',
-		md: '36',
-		lg: '84',
+		md: '36px',
+		lg: '84px',
 		full: '100%'
 	};
 	const size = $derived(options[size_options]);
 </script>
 
 <svg width={size} height={size}>
-	<!-- <use href="#avatar-{index}" /> -->
 	<use href="/avatars.svg#avatar-{index}" />
 </svg>

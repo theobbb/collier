@@ -5,6 +5,7 @@
 	import Dog from '$lib/ui/components/dog.svelte';
 	import Input from '$lib/ui/components/form/fields/input.svelte';
 	import Title from '$lib/ui/components/title.svelte';
+	import NextStep from '../next-step.svelte';
 
 	const url_avatar = page.url.searchParams.get('avatar');
 	if (url_avatar) {
@@ -20,8 +21,8 @@
 	</a>
 </div>
 
-<div>
-	<Dog dog={data.dogs[0]} />
+<div class="mb-4x">
+	<Dog dog={data.dogs[0]} size="lg" />
 </div>
 
 <div class="flex flex-col gap-2x">
@@ -31,4 +32,4 @@
 	<Input label="couleur/description" bind:value={data.dogs[0].color} />
 </div>
 
-<div class="mt-4x text-right"><Button href="/onboarding/4" variant="action">Continuer</Button></div>
+<NextStep step="4" />

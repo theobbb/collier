@@ -31,7 +31,7 @@ const seed: Data = {
 	dogs: [
 		{
 			name: 'Napoléon',
-			avatar: 10,
+			avatar: 16,
 			i: 0,
 			born: 1996,
 			race: 'Pit-bull & Langue-sortie',
@@ -40,7 +40,7 @@ const seed: Data = {
 		},
 		{
 			name: 'Maître UX',
-			avatar: 10,
+			avatar: 6,
 			i: 1,
 			born: 1996,
 			race: 'Pit-bull & Langue-sortie',
@@ -49,7 +49,7 @@ const seed: Data = {
 		},
 		{
 			name: 'Duchesse',
-			avatar: 10,
+			avatar: 26,
 			i: 2,
 			born: 1996,
 			race: 'Pit-bull & Langue-sortie',
