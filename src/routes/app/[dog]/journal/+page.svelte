@@ -46,4 +46,4 @@
 </div>
 <div class="mt-2x text-sm">Tout afficher</div>
 
-<Button icon="icon-[ri--sticky-note-add-line]" variant="action" size="lg" />
+<div class="mt-4"><Button icon="icon-[ri--sticky-note-add-line]" variant="action" size="lg" /></div>

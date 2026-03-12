@@ -16,7 +16,7 @@
 
 <div class="mb-4x">
 	Vos informations seront visibles <br /> par ceux qui scannent le collier <br /> de
-	{data.dogs[0].name}.
+	{data.dogs[1].name}.
 </div>
 
 <div class="flex flex-col gap-2x">
@@ -34,4 +34,4 @@
 </div>
 
 <div class="mt-5x text-sm">Vous pouvez modifier vos coordonnées plus tard.</div>
-<NextStep step="5" />
+<NextStep step="/onboarding/5" />

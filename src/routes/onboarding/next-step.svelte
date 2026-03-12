@@ -5,5 +5,5 @@
 </script>
 
 <div class="mt-4x text-right">
-	<Button href="/onboarding/{step}" variant="action" size="lg">Continuer</Button>
+	<Button href={step} variant="action" size="lg">Continuer</Button>
 </div>

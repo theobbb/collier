@@ -9,7 +9,7 @@
 
 	const url_avatar = page.url.searchParams.get('avatar');
 	if (url_avatar) {
-		data.dogs[0].avatar = Number(url_avatar);
+		data.dogs[1].avatar = Number(url_avatar);
 	}
 </script>
 
@@ -22,14 +22,14 @@
 </div>
 
 <div class="mb-4x">
-	<Dog dog={data.dogs[0]} size="lg" />
+	<Dog dog={data.dogs[1]} size="lg" />
 </div>
 
 <div class="flex flex-col gap-2x">
-	<Input label="année de naissance" bind:value={data.dogs[0].born} />
-	<Input label="race" bind:value={data.dogs[0].race} />
-	<Input label="sexe" bind:value={data.dogs[0].sex} />
-	<Input label="couleur/description" bind:value={data.dogs[0].color} />
+	<Input label="année de naissance" bind:value={data.dogs[1].born} />
+	<Input label="race" bind:value={data.dogs[1].race} />
+	<Input label="sexe" bind:value={data.dogs[1].sex} />
+	<Input label="couleur/description" bind:value={data.dogs[1].color} />
 </div>
 
-<NextStep step="4" />
+<NextStep step="/onboarding/4" />

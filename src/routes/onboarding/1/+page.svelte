@@ -9,9 +9,9 @@
 	<div>Vous êtes la première personne <br /> qui scanne ce collier !</div>
 	<div>C’est un grand moment pour...</div>
 </div>
-<Input name="" label="Nom du chien" bind:value={data.dogs[0].name} />
+<Input name="" label="Nom du chien" bind:value={data.dogs[1].name} />
 
-<NextStep step="2" />
+<NextStep step="/onboarding/2" />
 
 <div class="fixed right-2x bottom-4x left-2x flex flex-col items-center text-sm">
 	<div>Vous n’êtes pas propriétaire de ce chien ?</div>
