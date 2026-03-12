@@ -1,3 +1,5 @@
+import { seed } from './seed';
+
 export type Dog = {
 	i: number;
 	name: string;
@@ -14,7 +16,7 @@ export type Human = {
 	color: string;
 };
 
-type JournalEntry = {
+export type JournalEntry = {
 	type: 'meal' | 'walk';
 	author: number;
 	time: string;
@@ -33,75 +35,6 @@ export type Data = {
 	current_dog: number;
 	family: Human[];
 	contact: Contact;
-};
-
-const seed: Data = {
-	dogs: [
-		{
-			i: 0,
-			name: 'Napoléon',
-			avatar: 16,
-			born: 1996,
-			race: 'Pit-bull & Langue-sortie',
-			sex: 0,
-			color: 'Brun',
-			journal: [
-				{ type: 'meal', author: 0, time: '2026-03-11T07:00:00', shit: false },
-				{ type: 'walk', author: 0, time: '2026-03-11T07:30:00', shit: true },
-				{ type: 'walk', author: 1, time: '2026-03-11T12:00:00', shit: false },
-				{ type: 'meal', author: 1, time: '2026-03-11T17:00:00', shit: false },
-				{ type: 'walk', author: 2, time: '2026-03-11T18:30:00', shit: true },
-				{ type: 'walk', author: 3, time: '2026-03-11T21:00:00', shit: false }
-			]
-		},
-		{
-			i: 1,
-			name: 'Maître UX',
-			avatar: 6,
-			born: 1996,
-			race: 'Pit-bull & Langue-sortie',
-			sex: 0,
-			color: 'Brun',
-			journal: [
-				{ type: 'meal', author: 0, time: '2026-03-11T07:00:00', shit: false },
-				{ type: 'walk', author: 0, time: '2026-03-11T07:30:00', shit: true },
-				{ type: 'meal', author: 2, time: '2026-03-11T10:30:00', shit: false }, // Extra snack!
-				{ type: 'walk', author: 1, time: '2026-03-11T12:00:00', shit: true },
-				{ type: 'meal', author: 1, time: '2026-03-11T17:00:00', shit: false },
-				{ type: 'walk', author: 2, time: '2026-03-11T18:30:00', shit: true }
-			]
-		},
-		{
-			i: 2,
-			name: 'Duchesse',
-			avatar: 26,
-			born: 1996,
-			race: 'Pit-bull & Langue-sortie',
-			sex: 0,
-			color: 'Brun',
-			journal: [
-				{ type: 'meal', author: 0, time: '2026-03-11T07:00:00', shit: false },
-				{ type: 'walk', author: 0, time: '2026-03-11T07:30:00', shit: false },
-				{ type: 'walk', author: 1, time: '2026-03-11T12:00:00', shit: true },
-				{ type: 'meal', author: 1, time: '2026-03-11T17:00:00', shit: false },
-				{ type: 'walk', author: 2, time: '2026-03-11T18:30:00', shit: true },
-				{ type: 'walk', author: 3, time: '2026-03-11T21:00:00', shit: true }
-			]
-		}
-	],
-	current_dog: 1,
-	family: [
-		{ name: 'Papa William', color: 'red' },
-		{ name: 'Maman', color: 'green' },
-		{ name: 'Georgie', color: 'blue' },
-		{ name: 'Princesse fée', color: 'pink' }
-	],
-	contact: {
-		name: 'Papa William',
-		adress: '1440 Rue Sanguinet',
-		zip_code: 'H2X 3G1',
-		phones: ['(514) 987-3000']
-	}
 };
 
 const STORAGE_KEY = 'DOGS';

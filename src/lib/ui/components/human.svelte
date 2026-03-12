@@ -9,7 +9,7 @@
 		class="flex size-6 items-center justify-center rounded-full"
 		style="background-color: {human.color};"
 	>
-		<div class="text-xs font-medium uppercase">{human.name[0]}</div>
+		<div class="text-xs font-medium text-white/80 uppercase">{human.name[0]}</div>
 	</div>
 	{#if name}
 		<div>{human.name}</div>

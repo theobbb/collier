@@ -2,65 +2,30 @@
 	import { page } from '$app/state';
 	import { data } from '$lib/data.svelte';
 	import Avatar from '$lib/ui/components/avatar.svelte';
-
-	// 1. Create a fat runway of clones upfront.
-	// 20 sets of 3 dogs = 60 items. For SVGs, this is zero performance hit
-	// and completely removes the need to hack CSS reflows for infinite left-scrolling.
-	let uid = 0;
-	let track = $state(
-		Array.from({ length: 20 }).flatMap(() => data.dogs.map((dog) => ({ ...dog, key: uid++ })))
-	);
-
-	// 2. Start right in the middle of our runway (so they can click left endlessly)
-	let start_index = $state(data.dogs.length * 10);
-
-	function slide(direction: number) {
-		start_index += direction;
-		data.current_dog = track[start_index + 1].i;
-
-		// 3. The exact logic you asked for: push more clones if they reach the right end
-		if (start_index >= track.length - 3) {
-			track.push(...data.dogs.map((d) => ({ ...d, key: uid++ })));
-		}
-	}
 </script>
 
-<div class="w-full overflow-hidden py-4x">
-	<div
-		class="flex w-full transition-transform duration-300 ease-in-out"
-		style="transform: translateX(calc(-33.33333% * {start_index}));"
-	>
-		{#each track as dog, i (dog.key)}
-			{@const is_current = data.current_dog === dog.i}
-
-			<a
-				href={page.route.id?.replace('[dog]', dog.i)}
-				class="flex shrink-0 cursor-pointer flex-col items-center transition-all duration-300"
-				style="flex: 0 0 33.33333%;"
-				onclick={() => {
-					// Navigate based on which side they click
-					if (i === start_index) slide(-1);
-					if (i === start_index + 2) slide(1);
-				}}
+<div class="mx-4x my-4x flex items-center justify-around gap-1x">
+	{#each data.dogs as dog, i}
+		{@const is_current = (page.params.dog || 0) == i}
+		<a
+			class={[
+				is_current ? 'flex-2' : 'flex-1 translate-y-2',
+				'relative flex flex-col items-center p-1',
+				' border- rounded-full border-black/20  transition-all duration-300 ease-out'
+			]}
+			href={page.route.id?.replace('[dog]', String(i))}
+		>
+			<div class="aspect-square w-full">
+				<Avatar index={dog.avatar} size="full" />
+			</div>
+			<div
+				class={[
+					is_current ? 'text-xl-' : 'scale-60 opacity-0',
+					'absolute -bottom-1 translate-y-full rounded bg-white px-2 text-xl whitespace-nowrap italic transition-all duration-300 ease-in-out'
+				]}
 			>
-				<div
-					class={[
-						'aspect-square w-full transition-all duration-300',
-						is_current ? 'scale-100 opacity-100' : 'scale-75 opacity-60'
-					]}
-				>
-					<Avatar index={dog.avatar} size="full" />
-				</div>
-				<div
-					class={[
-						'mt-2x transition-all duration-300',
-						is_current ? 'text-xl font-bold' : 'text-sm',
-						'italic'
-					]}
-				>
-					{dog.name}
-				</div>
-			</a>
-		{/each}
-	</div>
+				{dog.name}
+			</div>
+		</a>
+	{/each}
 </div>
