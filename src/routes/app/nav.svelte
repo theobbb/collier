@@ -6,7 +6,6 @@
 	import Menu from './menu.svelte';
 
 	const param = $derived(store.pop_menu.open ? 'menu' : page.route.id?.split('/')?.[3]);
-	$inspect(param);
 
 	// const links = [
 	// 	{ label: 'Menu', icon: 'icon-[ri--menu-line]', onclick: () => {} },
