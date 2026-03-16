@@ -254,7 +254,7 @@
 	});
 </script>
 
-<div class="fixed inset-0 flex h-svh flex-col">
+<div class="fixed inset-0 -z-10 flex h-svh flex-col">
 	<div class="relative flex-1">
 		<div bind:this={mapContainer} class="map h-full w-full"></div>
 	</div>

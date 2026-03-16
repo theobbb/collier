@@ -7,8 +7,8 @@
 	const { children } = $props();
 </script>
 
-<div class="my-3x">
-	<div class="mt-4x">
+<div class="my-3x-">
+	<div class="mt-4x-">
 		{@render children()}
 		<!-- <div class="mt-4x text-right">
 			<Button href={next_step} variant="action">Continuer</Button>

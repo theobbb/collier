@@ -21,4 +21,4 @@
 	<div><Button icon="icon-[ri--add-line]" /></div>
 </div>
 
-<NextStep step="/app/1" />
+<NextStep step="/app/1/track/map" />

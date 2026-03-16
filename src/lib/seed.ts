@@ -17,7 +17,11 @@ export const seed: Data = {
 				{ type: 'meal', author: 0, time: '120', shit: false }, // this morning, Papa
 				{ type: 'walk', author: 2, time: '90', shit: false }, // Georgie walked all 3
 				{ type: 'walk', author: 3, time: '20', shit: true } // Princesse fée surprise walk
-			])
+			]),
+			schedule: {
+				walk: entry_time(-60), // next walk suggested in 1h
+				meal: entry_time(-240) // next meal suggested in 4h
+			}
 		},
 		{
 			i: 1,
@@ -34,7 +38,11 @@ export const seed: Data = {
 				{ type: 'meal', author: 0, time: '120', shit: false }, // this morning 7h, Papa fed all 3
 				{ type: 'walk', author: 2, time: '90', shit: true }, // 7h30 Georgie walked all 3
 				{ type: 'walk', author: 0, time: '15', shit: false } // 8h50 Papa quick solo walk
-			])
+			]),
+			schedule: {
+				walk: entry_time(-30), // next walk suggested in 1h
+				meal: entry_time(-180) // next meal suggested in 4h
+			}
 		},
 		{
 			i: 2,
@@ -51,7 +59,11 @@ export const seed: Data = {
 				{ type: 'meal', author: 0, time: '120', shit: false }, // this morning, Papa
 				{ type: 'walk', author: 2, time: '90', shit: true }, // Georgie walked all 3
 				{ type: 'meal', author: 2, time: '30', shit: false } // Georgie gave a snack
-			])
+			]),
+			schedule: {
+				walk: entry_time(-90), // next walk suggested in 1h
+				meal: entry_time(-60) // next meal suggested in 4h
+			}
 		}
 	],
 	current_dog: 1,
@@ -70,10 +82,16 @@ export const seed: Data = {
 };
 
 function generate_journal(entries: JournalEntry[]) {
-	const now = new Date();
-	return entries.map(({ time, ...rest }) => {
-		const t = new Date(now.getTime() - Number(time) * 60 * 1000);
-		const local = new Date(t.getTime() - t.getTimezoneOffset() * 60 * 1000);
-		return { ...rest, time: local.toISOString().slice(0, 19) };
+	return entries.map((entry) => {
+		const time = entry_time(Number(entry.time));
+
+		return { ...entry, time };
 	});
+}
+
+export function entry_time(delta: number) {
+	const now = new Date();
+	const t = new Date(now.getTime() - delta * 60 * 1000);
+	const local = new Date(t.getTime() - t.getTimezoneOffset() * 60 * 1000);
+	return local.toISOString().slice(0, 19);
 }

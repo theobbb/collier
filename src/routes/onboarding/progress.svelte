@@ -17,3 +17,9 @@
 		style="transform: scaleX({progress});"
 	></div>
 </div>
+{#if step > 1}
+	<a href="/onboarding/{step - 1}" class="mt-2x flex items-center gap-1 text-sm">
+		<div class="icon-[ri--arrow-left-line]"></div>
+		<div>Retour</div>
+	</a>
+{/if}
