@@ -4,7 +4,7 @@
 	import NextStep from '../next-step.svelte';
 </script>
 
-<div class="card col-span-full border p-3x">
+<div class="card col-span-full p-3x">
 	<div class="mb-3x space-y-4x text-xl leading-tight">
 		<div>Vous êtes la première personne <br /> qui scanne ce collier !</div>
 		<div>C’est un grand moment pour...</div>

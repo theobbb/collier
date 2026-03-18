@@ -20,7 +20,7 @@
 
 <div>
 	<div class="my-3x flex items-center gap-2x">
-		{#each ['Aujourd’hui', 'Semaine', 'Mois', 'Tout'] as scale, i}
+		{#each ['Jour', 'Semaine', 'Mois', 'Tout'] as scale, i}
 			<button
 				class={[
 					'corner flex-1 border px-3x py-1x text-xs font-medium tracking-wide ',
@@ -42,9 +42,10 @@
 			[40, 60],
 			[70, 100]
 		]}
+		delta={12}
 	>
 		<div>8h 51</div>
-		<div>13 488  pas</div>
+		<div>13 488 pas</div>
 		<div>6 km</div>
 	</Event>
 	<Event
@@ -54,6 +55,7 @@
 			[0, 40],
 			[60, 70]
 		]}
+		delta={-7}
 	>
 		<div>9h 15</div>
 		<div>3 interruptions</div>

@@ -16,8 +16,8 @@
 
 <div class="mb-4x">
 	<div class=" grid grid-cols-2 gap-2x font-medium">
-		<ScheduleItem type="meal" time={schedule.meal} />
-		<ScheduleItem type="walk" time={schedule.walk} />
+		<ScheduleItem type="meal" time="12:45 (1h)" />
+		<ScheduleItem type="walk" time="17:52 (4h)" />
 	</div>
 	<div class="mt-2x text-center text-xs font-medium">Suggestions selon l’horaire</div>
 </div>

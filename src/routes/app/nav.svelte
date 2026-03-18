@@ -9,47 +9,61 @@
 
 	const current_i = $derived(Number(page.params.dog) || 0);
 
+	let expanded_dogs = $state(false);
+
 	const links = [
 		{ name: 'Bilan', href: 'bilan', icon: 'icon-[ri--dashboard-3-line]' },
 		{ name: 'Carte', href: 'track/map', icon: 'icon-[ri--send-plane-fill]' },
-		{ name: 'Journal', href: 'journal', icon: 'icon-[ri--book-line]' }
+		{ name: 'Journal', href: 'journal', icon: 'icon-[ri--book-open-line]' }
 		// { name: 'Menu', href: 'menu', icon: 'icon-[ri--menu-line]' }
+	];
+
+	const sub_buttons = [
+		// {
+		// 	icon: 'icon-[ri--arrow-right-s-line]',
+		// 	onclick: () => {
+		// 		expanded_dogs = !expanded_dogs;
+		// 	}
+		// },
+		{ icon: 'icon-[tabler--school-bell]', onclick: () => {} },
+		{ icon: 'icon-[ri--mic-line]', onclick: () => {} }
 	];
 </script>
 
-<div class="pointer-events-none fixed right-0 bottom-0 left-0 flex items-end justify-between">
-	<div class="grid-rows-2- pointer-events-auto grid w-full grid-cols-12 gap-1">
-		<!-- <div class="col-span-4"><ScheduleItem type="meal" time={schedule.meal} /></div>
-		<div class="col-span-4"><ScheduleItem type="walk" time={schedule.walk} /></div> -->
+<div
+	class="pointer-events-none fixed right-0 bottom-0 left-0 flex items-end justify-between"
+	style="view-transition-name: nav;"
+>
+	<!-- <div class="absolute inset-0 bg-linear-to-b from-transparent to-black/5"></div> -->
+	<div class="m-2x flex w-full items-end justify-between">
+		<div class="flex gap-2x">
+			<div class="">
+				<Dogs expanded={expanded_dogs} />
+			</div>
+			<div class="flex-col- mt-2 flex gap-2x">
+				{#each sub_buttons as { icon, onclick }}
+					<button
+						class="card transparent pointer-events-auto flex size-11 items-center justify-center text-2xl shadow-xs backdrop-blur-xl"
+						{onclick}
+						title={icon}
+					>
+						<span class={[icon]}></span>
+					</button>
+				{/each}
+			</div>
+		</div>
 
-		<!-- <div class="card row-span-2">
-			<div class="text-xs font-medium">53%</div>
-		</div> -->
-		<!-- <a class="card col-start-1" href={page.route.id?.replace('[dog]', String(current_i + 1))}>
-			<div class="text-xs font-medium">↑</div>
-		</a>
-		<a
-			class="card col-start-1 row-start-2"
-			href={page.route.id?.replace('[dog]', String(current_i - 1))}
-		>
-			<div class="text-xs font-medium">↓</div>
-		</a> -->
-		<!-- <Dogs /> -->
-
-		<div
-			class="corner col-span-full mx-3x my-2 grid grid-cols-6 gap-1 overflow-hidden bg-white/50 px-1 py-1"
-		>
-			<Dogs />
+		<div class="flex-col- -ml-24 flex gap-2x">
 			{#each links as { name, href, icon }}
 				<a
 					href="/app/{page.params.dog}/{href}"
 					class={[
-						'corner pointer-events-auto row-start-2 flex flex-col items-center justify-center gap-0.5 px-2x pb-1.5 text-xs font-medium',
-						href.startsWith(param) ? 'bg-active ' : 'bg-neutral-300'
+						'card transparent pointer-events-auto flex size-15 flex-col items-center justify-center gap-px px-2x  pb-1.5 ',
+						href.startsWith(param) ? 'bg-active! ' : ''
 					]}
 				>
-					<span class={[icon, 'mt-1.5 text-2xl']}></span>
-					{name}
+					<span class={[icon, 'mt-1.5 shrink-0 text-3xl']}></span>
+					<span class="text-xs font-medium tracking-tight">{name}</span>
 				</a>
 			{/each}
 		</div>

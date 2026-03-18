@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { data } from '$lib/data.svelte';
 	import Avatar from '$lib/ui/components/avatar.svelte';
-	import Dog from '$lib/ui/components/dog.svelte';
+	import Dog from '$lib/ui/components/dog-card.svelte';
 
 	//let selected: number | null = $state(1);
 </script>

@@ -1,4 +1,3 @@
-import { page } from '$app/state';
 import { seed } from './seed';
 
 export type Dog = {
@@ -7,8 +6,9 @@ export type Dog = {
 	avatar: number;
 	born: number;
 	race: string;
-	sex: 0 | 1;
 	color: string;
+	sex: string;
+	weight: number;
 	journal: JournalEntry[];
 	schedule: {
 		meal: string;
@@ -43,7 +43,7 @@ export type Data = {
 	version: string;
 };
 
-const STORAGE_VERSION = '1.3';
+const STORAGE_VERSION = '1.4';
 
 const STORAGE_KEY = 'DOGS';
 

@@ -1,15 +1,20 @@
 import type { Data, JournalEntry } from './data.svelte';
 
-export const seed: Data = {
+const dog_props = {
+	born: 1996,
+	race: 'Pit-bull & Langue-sortie',
+	color: 'Brun tâcheté',
+	weight: 54,
+	sex: 'Femelle'
+};
+
+export const seed: Omit<Data, 'version'> = {
 	dogs: [
 		{
 			i: 0,
 			name: 'Duchesse',
 			avatar: 26,
-			born: 1996,
-			race: 'Pit-bull & Langue-sortie',
-			sex: 0,
-			color: 'Brun',
+			...dog_props,
 			journal: generate_journal([
 				{ type: 'walk', author: 0, time: '1470', shit: true }, // ~yesterday, Papa
 				{ type: 'meal', author: 1, time: '1440', shit: false }, // yesterday dinner, Maman
@@ -27,10 +32,7 @@ export const seed: Data = {
 			i: 1,
 			name: 'Napoléon',
 			avatar: 16,
-			born: 1996,
-			race: 'Pit-bull & Langue-sortie',
-			sex: 0,
-			color: 'Brun',
+			...dog_props,
 			journal: generate_journal([
 				{ type: 'walk', author: 0, time: '1470', shit: true }, // ~yesterday 33h ago, Papa solo walk
 				{ type: 'meal', author: 1, time: '1440', shit: false }, // yesterday dinner, Maman fed all 3
@@ -48,10 +50,7 @@ export const seed: Data = {
 			i: 2,
 			name: 'Maître UX',
 			avatar: 6,
-			born: 1996,
-			race: 'Pit-bull & Langue-sortie',
-			sex: 0,
-			color: 'Brun',
+			...dog_props,
 			journal: generate_journal([
 				{ type: 'walk', author: 0, time: '1470', shit: false }, // ~yesterday, Papa
 				{ type: 'meal', author: 1, time: '1440', shit: false }, // yesterday dinner, Maman

@@ -25,6 +25,6 @@
 
 	<div class="flex items-center gap-1 text-xl font-normal">
 		<div class="icon-[ri--timer-line]"></div>
-		<div>{hour}</div>
+		<div>{time}</div>
 	</div>
 </div>

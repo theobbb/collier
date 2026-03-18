@@ -1,8 +1,5 @@
 <script lang="ts">
 	import Profil from '$lib/ui/templates/profil.svelte';
-	import NextStep from '../next-step.svelte';
 </script>
 
 <Profil />
-
-<NextStep step="/onboarding/5" />

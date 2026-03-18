@@ -1,8 +1,33 @@
 <script lang="ts">
 	import Menu from './menu.svelte';
 	import Nav from './nav.svelte';
+	import { onNavigate } from '$app/navigation';
+	import { page } from '$app/state';
 
 	const { children } = $props();
+
+	const route_order = ['/app/[dog]/bilan', '/app/[dog]/journal', '/app/[dog]/menu'];
+
+	onNavigate((navigation) => {
+		if (!document.startViewTransition) return;
+
+		const fromIndex = route_order.indexOf(navigation.from?.route.id ?? '');
+		const toIndex = route_order.indexOf(navigation.to?.route.id ?? '');
+		const direction = toIndex >= fromIndex ? 'forward' : 'back';
+
+		if (fromIndex !== -1 && toIndex !== -1) {
+			document.documentElement.dataset.direction = direction;
+		} else {
+			delete document.documentElement.dataset.direction;
+		}
+
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
+	});
 
 	let menu_open = $state(false);
 
@@ -21,21 +46,18 @@
 </script>
 
 <div class="fixed top-3x right-3x z-300">
-	<button onclick={toggle_menu} title="toggle menu">
+	<a href="/app/{page.params.dog}/menu" title="toggle menu">
 		<span class="icon-[ri--menu-fill] text-2xl"></span>
-	</button>
+	</a>
 </div>
+
 <div>
-	<div class="mt-4x-">
-		{@render children()}
-		<!-- <div class="mt-4x text-right">
-			<Button href={next_step} variant="action">Continuer</Button>
-		</div> -->
-	</div>
+	{@render children()}
+
 	<Nav />
 </div>
 
-<div
+<!-- <div
 	class={[
 		'fixed top-0 right-0 bottom-0 left-24 z-200',
 		menu_open ? '' : 'pointer-events-none translate-8 opacity-0',
@@ -43,4 +65,4 @@
 	]}
 >
 	<Menu />
-</div>
+</div> -->
