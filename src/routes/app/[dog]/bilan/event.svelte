@@ -23,7 +23,7 @@
 	</div>
 	<div class="flex w-full flex-col gap-1x">
 		<div>
-			<div class="corner relative h-3 w-full overflow-hidden bg-black/20">
+			<div class="corner relative h-3 w-full overflow-hidden bg-black/15">
 				{#each timeline as [start, end]}
 					<div
 						class="absolute h-full w-full origin-left bg-progress"
@@ -32,7 +32,7 @@
 				{/each}
 			</div>
 		</div>
-		<div class="flex gap-3 text-base font-medium">{@render children()}</div>
+		<div class="flex gap-3x text-base font-medium">{@render children()}</div>
 	</div>
 </div>
 <!-- <div class="flex w-full gap-2 border px-3x py-2x">

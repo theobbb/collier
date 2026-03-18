@@ -4,7 +4,7 @@
 	import Button from '$lib/ui/components/button.svelte';
 	import Grid from '$lib/ui/components/grid.svelte';
 	import Human from '$lib/ui/components/human.svelte';
-	import ScheduleItem from '$lib/ui/components/schedule-item.svelte';
+	import ScheduleItem from './schedule-item.svelte';
 	import Title from '$lib/ui/components/title.svelte';
 	import { format_time } from '$lib/utils/format-date';
 

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Button from '$lib/ui/components/button.svelte';
-	import ScheduleItem from '$lib/ui/components/schedule-item.svelte';
+
 	import Title from '$lib/ui/components/title.svelte';
 	import Event from './event.svelte';
 
@@ -13,9 +12,27 @@
 		header: 'mb-4 flex text-2 justify-between items-center gap-2',
 		label: 'text-sm/3.5 font-medium'
 	};
+
+	let time_scale = $state(0);
 </script>
 
 <Title icon="icon-[ri--dashboard-3-line]">Bilan</Title>
+
+<div>
+	<div class="my-3x flex items-center gap-2x">
+		{#each ['Aujourd’hui', 'Semaine', 'Mois', 'Tout'] as scale, i}
+			<button
+				class={[
+					'corner flex-1 border px-3x py-1x text-xs font-medium tracking-wide ',
+					time_scale == i ? 'bg-active  text-black' : 'bg-black/10 text-muted'
+				]}
+				onclick={() => (time_scale = i)}
+			>
+				{scale}
+			</button>
+		{/each}
+	</div>
+</div>
 
 <div class="space-y-3x">
 	<Event
@@ -27,7 +44,7 @@
 		]}
 	>
 		<div>8h 51</div>
-		<div>13 488 pas</div>
+		<div>13 488  pas</div>
 		<div>6 km</div>
 	</Event>
 	<Event
@@ -55,7 +72,7 @@
 			[94, 97]
 		]}
 	>
-		<div>43 fois</div>
+		<div>43 x</div>
 		<div>16 min</div>
 		<div>74 dB</div>
 	</Event>

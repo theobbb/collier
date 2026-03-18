@@ -6,13 +6,16 @@
 	const { time: hour, day } = $derived(format_time(time));
 </script>
 
-<div class="corner px-3x py-2x text-sm" style="background-color: var(--color-{type});">
-	<div class="flex items-center justify-between gap-2">
+<div
+	class="corner flex flex-col justify-between border px-3x py-2x text-sm"
+	style="background-color: var(--color-{type});"
+>
+	<div class="mb-2x flex items-center justify-between gap-2 text-muted">
 		<div>
 			{#if type == 'meal'}
-				Prochain repas
+				Repas
 			{:else}
-				Prochaine marche
+				Marche
 			{/if}
 		</div>
 		<div>
@@ -20,7 +23,7 @@
 		</div>
 	</div>
 
-	<div class="flex items-center gap-1">
+	<div class="flex items-center gap-1 text-xl font-normal">
 		<div class="icon-[ri--timer-line]"></div>
 		<div>{hour}</div>
 	</div>

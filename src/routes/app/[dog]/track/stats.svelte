@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import ScheduleItem from '$lib/ui/components/schedule-item.svelte';
+	import ScheduleItem from '../journal/schedule-item.svelte';
 
 	const { dog } = $derived(page.data);
 	const { journal, schedule } = $derived(dog);

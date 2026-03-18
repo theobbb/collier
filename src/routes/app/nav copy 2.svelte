@@ -3,7 +3,7 @@
 	import { store } from '$lib/store.svelte';
 	import Button from '$lib/ui/components/button.svelte';
 	import Grid from '$lib/ui/components/grid.svelte';
-	import ScheduleItem from '$lib/ui/components/schedule-item.svelte';
+	import ScheduleItem from './[dog]/journal/schedule-item.svelte';
 	import Dogs from './dogs.svelte';
 	import Menu from './menu.svelte';
 
