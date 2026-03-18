@@ -4,7 +4,7 @@
 	import Input from '$lib/ui/components/form/fields/input.svelte';
 	import Title from '$lib/ui/components/title.svelte';
 
-	const { dog }: { dog: Dog } = $props();
+	const { dog, carousel }: { dog: Dog; carousel?: boolean } = $props();
 </script>
 
 <div class="card border p-3x">
@@ -13,7 +13,9 @@
 	</div>
 
 	<div class="mt-3x flex justify-center py-2x">
-		<div class="w-36"><DogCard {dog} /></div>
+		<div class="w-36">
+			<DogCard {dog} />
+		</div>
 	</div>
 
 	<div class="mt-3x flex flex-col gap-2x">

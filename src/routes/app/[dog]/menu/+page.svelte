@@ -11,8 +11,22 @@
 	);
 </script>
 
-<div class="relative z-100 -mt-3x ml-4x min-h-screen">
-	<div class="z-30 min-h-screen bg-background pt-3x">
+<!-- {#if menu_open}
+	<div class={['backdrop fixed inset-0 -z-10']} style="view-transition-name: backdrop;"></div>
+{:else}
+	<div
+		class={['backdrop fixed inset-0 -z-10 opacity-0']}
+		style="view-transition-name: backdrop;"
+	></div>
+{/if} -->
+
+<div class="relative z-100 -mt-3x ml-5x min-h-screen">
+	<a
+		href={from}
+		class={['backdrop fixed top-0 right-0 bottom-0 left-5x z-20 -translate-x-full']}
+		style="view-transition-name: backdrop;"
+	></a>
+	<div class=" z-30 min-h-screen bg-background pt-3x">
 		<Title icon="icon-[ri--menu]">Menu</Title>
 
 		<div class="space-y-3x pt-2x">

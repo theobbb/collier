@@ -7,9 +7,13 @@
 	import ScheduleItem from './schedule-item.svelte';
 	import Title from '$lib/ui/components/title.svelte';
 	import { format_time } from '$lib/utils/format-date';
+	import { Pop } from '$lib/ui/components/pop/pop-context.svelte';
+	import Dialog from '$lib/ui/components/pop/dialog/dialog.svelte';
 
 	const { dog } = $derived(page.data);
 	const { journal, schedule } = $derived(dog);
+
+	const pop = new Pop();
 </script>
 
 <Title icon="icon-[ri--book-line] ">Journal</Title>
@@ -23,7 +27,9 @@
 </div>
 
 <div class="corner border p-2x">
-	<div class="mb-3x"><Button class="w-full" variant="action">+ Nouveau</Button></div>
+	<div class="mb-3x">
+		<Button onclick={pop.show} class="w-full" variant="action">+ Nouveau</Button>
+	</div>
 	<div class="flex flex-col-reverse gap-2x">
 		{#each journal as { type, author, shit, time }}
 			{@const { day, time: hours } = format_time(time)}
@@ -59,10 +65,16 @@
 			</div>
 		{/each}
 	</div>
-	<div class="mt-2x text-sm">Tout afficher</div>
 </div>
 
-<button class="corner col-span-4 bg-blue-400"> + Nouveau </button>
-<!-- <div class="mt-4">
-		<Button icon="icon-[ri--sticky-note-add-line]" variant="action" size="lg" />
-	</div> -->
+<Dialog {pop}>
+	<Title icon="icon-[ri--sticky-note-add-line]">Nouvelle note</Title>
+
+	<div class="text-lg">
+		<Human human={data.family[0]} name />
+	</div>
+	<div class="grid grid-cols-2 gap-2x">
+		<Button onclick={pop.close} class="min-w-[unset]! px-0!">Annuler</Button>
+		<Button variant="action" size="lg" class="min-w-[unset]! px-0!">Enregistrer</Button>
+	</div>
+</Dialog>

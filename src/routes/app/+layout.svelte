@@ -46,7 +46,10 @@
 	const menu_open = $derived(page.route.id?.split('/')?.[3] == 'menu');
 </script>
 
-<div class=" fixed top-3x right-3x z-300" style="view-transition-name: menu-toggle;">
+<div
+	class={['fixed top-3x right-3x z-300', menu_open ? 'opacity-0' : '', 'transition ease-in-out']}
+	style="view-transition-name: menu-toggle;"
+>
 	<a
 		href="/app/{page.params.dog}/menu?from={encodeURIComponent(page.url.pathname)}"
 		title="toggle menu"

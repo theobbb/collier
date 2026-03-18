@@ -55,7 +55,7 @@ function get_saved(): Data {
 		const parsed: Data = JSON.parse(saved);
 		if (parsed.version == STORAGE_VERSION) return parsed;
 	}
-	return seed;
+	return { ...seed, version: STORAGE_VERSION };
 }
 export const data: Data = $state(get_saved());
 

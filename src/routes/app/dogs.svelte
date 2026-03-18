@@ -18,10 +18,13 @@
 	});
 </script>
 
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<!-- svelte-ignore a11y_click_events_have_key_events -->
 <div
+	title="close dogs"
 	onclick={() => (expanded = false)}
 	class={[
-		'fixed inset-0 z-50 bg-black/30',
+		'backdrop fixed inset-0 z-50',
 		expanded ? 'pointer-events-auto' : 'opacity-0',
 		'transition-all duration-300 ease-out'
 	]}
@@ -34,7 +37,7 @@
 		'transition-all duration-300 ease-out'
 	]}
 >
-	<Button size="lg" class="w-36! min-w-[unset]! bg-blue-200">+ Ajouter</Button>
+	<Button href="/onboarding/1" size="lg" class="w-36! min-w-[unset]! bg-blue-200">+ Ajouter</Button>
 </div>
 
 <div class={['relative z-200 size-36', expanded ? '' : '']}>

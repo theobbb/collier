@@ -38,8 +38,8 @@
 </script>
 
 {#if pop.open}
-	<dialog use:open closedby="any" class={['m-auto', sizes[size]]} {onclose}>
-		<div class="flex flex-col gap-4x bg-background p-3x">
+	<dialog use:open closedby="any" class={['card m-auto w-[calc(100vw-4.5rem)]']} {onclose}>
+		<div class="flex flex-col gap-3x bg-background p-3x">
 			{@render children()}
 		</div>
 	</dialog>
