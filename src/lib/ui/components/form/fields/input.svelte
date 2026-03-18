@@ -21,8 +21,10 @@
 	const id = $derived(props.id || name || props_id);
 </script>
 
-<div>
-	<div class="bg-surface text-surface-foreground ring-accent flex flex-col focus-within:ring-2">
+<div class=" ">
+	<div
+		class="text-surface-foreground corner ring-accent flex flex-col border bg-blue-100 ring-blue-500 focus-within:ring-2"
+	>
 		<Label {id} {name} required={Boolean(required)} {label} icon={label_icon} linked />
 
 		<input
@@ -34,8 +36,8 @@
 			{type}
 			{placeholder}
 			class={[
-				'placeholder-surface-foreground/50 border px-3x py-1x text-lg outline-none',
-				label && '-mt-2 border-t-0',
+				'placeholder-surface-foreground/50 px-3x py-1x text-lg outline-none',
+				label && '-mt-2',
 				props.class
 			]}
 			{id}

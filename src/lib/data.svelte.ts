@@ -43,7 +43,7 @@ export type Data = {
 	version: string;
 };
 
-const STORAGE_VERSION = '1.1';
+const STORAGE_VERSION = '1.3';
 
 const STORAGE_KEY = 'DOGS';
 

@@ -11,30 +11,28 @@
 </div> -->
 
 {#each data.dogs as dog, i}
-	{#if i == 1}
-		{@const is_current = current_i == i}
-		<a
+	{@const is_current = current_i == i}
+	<a
+		class={[
+			is_current ? '' : '',
+			'card absolute- inset-0- pointer-events-auto col-span-4 row-span-2 flex flex-col items-center justify-between p-1',
+			'transition-all duration-300 ease-out'
+		]}
+		style="transform-: translateY({(current_i - i) * 100}%);"
+		href={page.route.id?.replace('[dog]', String(i))}
+	>
+		<div class="h-full- flex">
+			<Avatar index={dog.avatar} size="lg" />
+		</div>
+		<div
 			class={[
-				is_current ? '' : '',
-				'card absolute- inset-0- pointer-events-auto col-span-2 col-start-1 row-span-2 row-start-1 flex flex-col items-center justify-between p-1',
-				'transition-all duration-300 ease-out'
+				is_current ? 'text-xl-' : 'opacity-0',
+				'absolute- translate-y-full- -bottom-1 shrink-0 rounded px-2 text-xs font-medium whitespace-nowrap italic '
 			]}
-			style="transform-: translateY({(current_i - i) * 100}%);"
-			href={page.route.id?.replace('[dog]', String(i))}
 		>
-			<div class="h-full- flex">
-				<Avatar index={dog.avatar} size="lg" />
-			</div>
-			<div
-				class={[
-					is_current ? 'text-xl-' : 'opacity-0',
-					'absolute- translate-y-full- -bottom-1 shrink-0 rounded px-2 text-xs font-medium whitespace-nowrap italic '
-				]}
-			>
-				{dog.name}
-			</div>
-		</a>
-	{/if}
+			{dog.name}
+		</div>
+	</a>
 {/each}
 
 {#snippet dog_renderer(dog: Dog, i: number)}

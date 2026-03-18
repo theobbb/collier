@@ -8,12 +8,30 @@
 	--spacing-4x: calc(var(--spacing) * 8);
 	--spacing-5x: calc(var(--spacing) * 16);
 
-	--color-background: rgb(18, 18, 18);
-	--color-surface: rgb(240, 240, 240);
+	--color-background: rgb(238, 238, 238);
+	--color-surface: rgb(244, 244, 244);
 	--color-foreground: rgb(31, 31, 31);
+
+	--color-muted: rgb(66, 66, 66);
+
+	--color-surface-muted: rgb(198, 198, 198);
 
 	--color-meal: oklch(89.2% 0.058 10.001);
 	--color-walk: oklch(93.8% 0.127 124.321);
+
+	--color-active: yellow;
+
+	--color-accent-1: oklch(88.2% 0.059 254.128);
+	--color-accent-2: oklch(70.7% 0.165 254.624);
+	--color-accent-3: oklch(62.3% 0.214 259.815);
+
+	--color-progress: oklch(72.3% 0.219 149.579);
+}
+
+@layer base {
+	* {
+		border-color: rgba(0, 0, 0, 0.08);
+	}
 }
 
 body:has(dialog[open]) {
@@ -21,7 +39,7 @@ body:has(dialog[open]) {
 }
 
 html {
-	font-family: 'Inter', sans-serif;
+	font-family: 'DM Sans', sans-serif;
 	font-optical-sizing: auto;
 	font-weight: 400;
 	font-style: normal;
@@ -33,7 +51,7 @@ html {
 }
 
 .font-comic {
-	font-family: 'Comic Relief', system-ui;
+	font-family: 'Schoolbell', cursive;
 }
 
 .text-2 {
@@ -41,7 +59,8 @@ html {
 }
 
 .card {
-	background-color: var(--color-surface);
+	@apply bg-surface;
+	/* background-color: var(--color-surface); */
 }
 
 @supports (-webkit-appearance: none) and (not (-moz-appearance: none)) {

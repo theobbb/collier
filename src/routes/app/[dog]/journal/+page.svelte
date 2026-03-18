@@ -17,14 +17,11 @@
 		<Title icon="icon-[ri--book-line] ">Journal</Title>
 	</div>
 	<button class="corner col-span-4 bg-blue-400"> + Nouveau </button>
-	<div class="col-span-full">
+	<div class="card col-span-full p-2x">
 		<div class="flex flex-col-reverse gap-0.5">
 			{#each journal as { type, author, shit, time }}
 				{@const { day, time: hours } = format_time(time)}
-				<div
-					class="bg-black/5- corner grid grid-cols-12 px-3 py-3"
-					style="background-color: var(--color-{type})"
-				>
+				<div class="bg-black/5- corner grid grid-cols-12 px-3 py-3">
 					<div class="col-span-6 flex items-center gap-3">
 						<div class="shrink-0"><Human human={data.family[author]} /></div>
 
@@ -37,6 +34,7 @@
 							'col-span-2 flex items-center text-base ',
 							type == 'walk' ? 'bg-walk' : 'bg-meal'
 						]}
+						style="background-color: var(--color-{type})"
 					>
 						<span class={[type == 'walk' ? 'icon-[ri--walk-fill]' : 'icon-[ri--restaurant-fill]']}
 						></span>

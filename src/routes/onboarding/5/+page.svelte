@@ -6,19 +6,25 @@
 	import NextStep from '../next-step.svelte';
 </script>
 
-<div class="mb-4x flex items-center justify-between">
+<div class="card border p-3x">
 	<Title icon="icon-[ri--user-line]">Famille</Title>
-	<a href="/app/1" class="flex items-center gap-1">
-		Sauter
-		<span class="icon-[ri--arrow-right-long-line]"></span>
-	</a>
-</div>
+	<div class="mb-4x py-1x text-muted">
+		Invitez les proches de {data.dogs[1].name} <br /> à rejoindre l’application.
+	</div>
 
-<div class="flex flex-col gap-2x">
-	{#each data.family as human}
-		<Human {human} name />
-	{/each}
-	<div><Button icon="icon-[ri--add-line]" /></div>
+	<div class="flex flex-col gap-3x text-lg">
+		{#each data.family as human}
+			<Human {human} name />
+		{/each}
+		<div>
+			<Button
+				class="w-full"
+				onclick={() => data.contact.phones.push('')}
+				icon="icon-[ri--add-line]"
+			>
+				Inviter
+			</Button>
+		</div>
+	</div>
 </div>
-
 <NextStep step="/app/1/track/map" />

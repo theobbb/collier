@@ -14,7 +14,7 @@
 	const size = $derived(options[size_option]);
 </script>
 
-<div class="flex flex-col items-center gap-3x">
-	<div><Avatar index={dog.avatar} {size} /></div>
-	<div><div class={[options[size_option], 'italic']}>{dog.name}</div></div>
+<div class="corner flex w-fit flex-col items-center gap-1x border p-3x">
+	<div class="size-26"><Avatar index={dog.avatar} {size} /></div>
+	<div><div class={[options[size_option], 'font-comic']}>{dog.name}</div></div>
 </div>

@@ -10,16 +10,16 @@
 	{@render dog_renderer(data.dogs[current_i], current_i)}
 </div> -->
 
-{#each data.dogs as dog, i}
-	{#if i == 1}
+<div class="relative col-span-3 row-span-2 overflow-hidden">
+	{#each data.dogs as dog, i}
 		{@const is_current = current_i == i}
 		<a
 			class={[
 				is_current ? '' : '',
-				'card absolute- inset-0- pointer-events-auto col-span-2 col-start-1 row-span-2 row-start-1 flex flex-col items-center justify-between p-1',
+				'card pointer-events-auto absolute inset-0 flex flex-col items-center justify-between p-1',
 				'transition-all duration-300 ease-out'
 			]}
-			style="transform-: translateY({(current_i - i) * 100}%);"
+			style="transform: translateY({(current_i - i) * 100}%);"
 			href={page.route.id?.replace('[dog]', String(i))}
 		>
 			<div class="h-full- flex">
@@ -34,8 +34,8 @@
 				{dog.name}
 			</div>
 		</a>
-	{/if}
-{/each}
+	{/each}
+</div>
 
 {#snippet dog_renderer(dog: Dog, i: number)}
 	{@const is_current = current_i == i}

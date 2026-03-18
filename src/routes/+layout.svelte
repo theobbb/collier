@@ -4,7 +4,7 @@
 	let { children } = $props();
 </script>
 
-<div class="font-comic- mx-3x- m-0.5">
+<div class="font-comic- mx-3x my-3x">
 	{@render children()}
 </div>
 

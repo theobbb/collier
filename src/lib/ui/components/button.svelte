@@ -22,16 +22,14 @@
 	export type Props = ButtonProps | LinkProps;
 
 	const cvx = use_cvx(
-		'peer inline-flex cursor-pointer items-center justify-center border transition-colors duration-100 disabled:cursor-not-allowed disabled:opacity-50 loading:cursor-wait loading:opacity-50',
+		'peer corner inline-flex font-medium cursor-pointer items-center justify-center border transition-colors duration-100 disabled:cursor-not-allowed disabled:opacity-50 loading:cursor-wait loading:opacity-50',
 		{
 			variant: {
-				default: 'bg-secondary hover:not-disabled:bg-foreground/15',
-				action:
-					'text-neutral-100 bg-black border-black not-hover:border-black/90 hover:not-disabled:bg-black dark:hover:not-disabled:bg-white',
-				danger:
-					'bg-red-surface/80 text-red-surface-foreground border-red-surface hover:not-disabled:border-red-800 hover:not-disabled:bg-red-600/60',
-				discrete: 'hover:not-disabled:bg-foreground/10',
-				ghost: 'hover:not-disabled:bg-foreground/15 not-hover:border-transparent',
+				default: 'bg-black/5 ',
+				action: 'text-neutral-100 bg-blue-500    ',
+				danger: 'bg-red-500/80 text-red-950  ',
+				discrete: '',
+				ghost: 'border-transparent',
 				none: 'border-0'
 			},
 			size: {

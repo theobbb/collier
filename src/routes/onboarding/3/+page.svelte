@@ -13,23 +13,19 @@
 	}
 </script>
 
-<div class="mb-4x flex items-center justify-between">
-	<Title icon="icon-[ri--dossier-line]">Carnet médical</Title>
-	<a href="/onboarding/4" class="flex items-center gap-1">
-		Sauter
-		<span class="icon-[ri--arrow-right-long-line]"></span>
-	</a>
-</div>
+<div class="card border p-3x">
+	<div class=" flex items-center justify-between">
+		<Title icon="icon-[ri--dossier-line]">Carnet médical</Title>
+	</div>
 
-<div class="mb-4x">
-	<Dog dog={data.dogs[1]} size="lg" />
-</div>
+	<div class="flex justify-center py-2x"><Dog dog={data.dogs[1]} size="lg" /></div>
 
-<div class="flex flex-col gap-2x">
-	<Input label="année de naissance" bind:value={data.dogs[1].born} />
-	<Input label="race" bind:value={data.dogs[1].race} />
-	<Input label="sexe" bind:value={data.dogs[1].sex} />
-	<Input label="couleur/description" bind:value={data.dogs[1].color} />
+	<div class="mt-3x flex flex-col gap-2x">
+		<Input label="année de naissance" bind:value={data.dogs[1].born} />
+		<Input label="race" bind:value={data.dogs[1].race} />
+		<Input label="sexe" bind:value={data.dogs[1].sex} />
+		<Input label="couleur/description" bind:value={data.dogs[1].color} />
+	</div>
 </div>
 
 <NextStep step="/onboarding/4" />

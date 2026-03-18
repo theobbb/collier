@@ -26,7 +26,10 @@
 			></div>
 		</a>
 	</div>
-	<div class="card relative my-0.5 h-[calc(100svh-13.1rem)] w-full overflow-hidden">
-		<div class="relative h-full w-full">{@render children()}</div>
+	<div class="card fixed inset-0 -z-10">
+		{@render children()}
 	</div>
+	<!-- <div class="card relative my-0.5 h-[calc(100svh-11.5rem)] w-full overflow-hidden">
+		<div class="relative h-full w-full">{@render children()}</div>
+	</div> -->
 </div>
