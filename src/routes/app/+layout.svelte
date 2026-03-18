@@ -1,21 +1,35 @@
 <script lang="ts">
-	import Menu from './menu.svelte';
 	import Nav from './nav.svelte';
 	import { onNavigate } from '$app/navigation';
 	import { page } from '$app/state';
 
 	const { children } = $props();
 
-	const route_order = ['/app/[dog]/bilan', '/app/[dog]/journal', '/app/[dog]/menu'];
-
+	const route_order = [
+		'/app/[dog]/bilan',
+		'/app/[dog]/track',
+		'/app/[dog]/journal',
+		'/app/[dog]/menu'
+	];
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
+		if (navigation.from?.route.id === navigation.to?.route.id) return;
 
-		const fromIndex = route_order.indexOf(navigation.from?.route.id ?? '');
-		const toIndex = route_order.indexOf(navigation.to?.route.id ?? '');
-		const direction = toIndex >= fromIndex ? 'forward' : 'back';
+		const find_route_index = (route_id: string) => {
+			const menu_route = '/app/[dog]/menu';
+			if (route_id.startsWith(menu_route) && route_id.length > menu_route.length) return 100;
+			return route_order.findIndex((r) => route_id.startsWith(r));
+		};
 
-		if (fromIndex !== -1 && toIndex !== -1) {
+		const from_index = find_route_index(navigation.from?.route.id ?? '');
+		const to_index = find_route_index(navigation.to?.route.id ?? '');
+		const direction = to_index >= from_index ? 'forward' : 'back';
+
+		// const routeSegment = (route_id: string) => route_id.split('/').at(-1) ?? '';
+		// document.documentElement.dataset.from = routeSegment(navigation.from?.route.id ?? '');
+		// document.documentElement.dataset.to = routeSegment(navigation.to?.route.id ?? '');
+
+		if (from_index !== -1 && to_index !== -1) {
 			document.documentElement.dataset.direction = direction;
 		} else {
 			delete document.documentElement.dataset.direction;
@@ -29,40 +43,33 @@
 		});
 	});
 
-	let menu_open = $state(false);
-
-	function open_menu() {
-		document.documentElement.style.overflow = 'hidden';
-		menu_open = true;
-	}
-	function close_menu() {
-		document.documentElement.style.overflow = 'auto';
-		menu_open = false;
-	}
-	function toggle_menu() {
-		if (menu_open) close_menu();
-		else open_menu();
-	}
+	const menu_open = $derived(page.route.id?.split('/')?.[3] == 'menu');
 </script>
 
-<div class="fixed top-3x right-3x z-300">
-	<a href="/app/{page.params.dog}/menu" title="toggle menu">
+<div class=" fixed top-3x right-3x z-300" style="view-transition-name: menu-toggle;">
+	<a
+		href="/app/{page.params.dog}/menu?from={encodeURIComponent(page.url.pathname)}"
+		title="toggle menu"
+	>
 		<span class="icon-[ri--menu-fill] text-2xl"></span>
 	</a>
 </div>
 
-<div>
-	{@render children()}
+<div class="mb-54">{@render children()}</div>
 
-	<Nav />
+<!-- <main style="view-transition-name: main;">{@render children()}</main> -->
+<div class={['pointer-events-none fixed right-0 bottom-0 left-0 flex items-end justify-between']}>
+	{#if menu_open}
+		<Nav menu_open />
+	{:else}
+		<Nav />
+	{/if}
 </div>
-
-<!-- <div
-	class={[
-		'fixed top-0 right-0 bottom-0 left-24 z-200',
-		menu_open ? '' : 'pointer-events-none translate-8 opacity-0',
-		'transition'
-	]}
->
-	<Menu />
-</div> -->
+<!-- {#if menu_open}
+	<div class={['backdrop fixed inset-0 -z-10']} style="view-transition-name: backdrop;"></div>
+{:else}
+	<div
+		class={['backdrop fixed inset-0 -z-10 opacity-0']}
+		style="view-transition-name: backdrop;"
+	></div>
+{/if} -->

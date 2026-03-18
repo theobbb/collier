@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import Back from '$lib/ui/components/back.svelte';
 	import type { Snippet } from 'svelte';
 
 	const { children }: { label: string; children: Snippet } = $props();
@@ -8,12 +9,6 @@
 </script>
 
 {#if route_length > 4}
-	<a
-		href="/app/{page.params.dog}/menu"
-		class="mb-3x flex items-center gap-2x text-sm font-medium text-muted"
-	>
-		<div class="icon-[ri--arrow-left-line]"></div>
-		<div>Retour</div>
-	</a>
+	<Back href="/app/{page.params.dog}/menu" />
 {/if}
 {@render children()}

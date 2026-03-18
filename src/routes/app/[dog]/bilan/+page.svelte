@@ -73,6 +73,7 @@
 			[91, 92],
 			[94, 97]
 		]}
+		delta={-13}
 	>
 		<div>43 x</div>
 		<div>16 min</div>
@@ -86,6 +87,7 @@
 			[29, 32],
 			[82, 86]
 		]}
+		delta={22}
 	>
 		<div>9h 15</div>
 		<div>3 interruptions</div>
@@ -100,6 +102,7 @@
 			[56, 64],
 			[96, 98]
 		]}
+		delta={132}
 	>
 		<div>9h15</div>
 		<div>3 interruptions</div>

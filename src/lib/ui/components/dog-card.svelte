@@ -7,7 +7,7 @@
 
 <div
 	class={[
-		'card @container flex flex-col items-center gap-[2cqh] p-[2cqmax]',
+		'card @container flex flex-col items-center gap-[2cqh] p-[2cqmin]',
 		transparent ? 'transparent' : ''
 	]}
 >

@@ -28,6 +28,10 @@
 	</div>
 	<div class="card fixed inset-0 -z-10">
 		{@render children()}
+
+		<!-- <div
+			class="pointer-events-none absolute top-0 right-0 left-0 h-32 bg-linear-to-t from-transparent to-white"
+		></div> -->
 	</div>
 	<!-- <div class="card relative my-0.5 h-[calc(100svh-11.5rem)] w-full overflow-hidden">
 		<div class="relative h-full w-full">{@render children()}</div>

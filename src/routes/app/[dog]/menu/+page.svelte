@@ -6,24 +6,36 @@
 	import Group from './group.svelte';
 	import Item from './item.svelte';
 
-	const links = [{ name: '' }];
+	const from = $derived(
+		decodeURIComponent(page.url.searchParams.get('from') || '') || `/app/${page.params.dog}/bilan`
+	);
 </script>
 
-<Title icon="icon-[ri--menu]">Menu</Title>
+<div class="relative z-100 -mt-3x ml-4x min-h-screen">
+	<div class="z-30 min-h-screen bg-background pt-3x">
+		<Title icon="icon-[ri--menu]">Menu</Title>
 
-<div class="space-y-3x pt-2x">
-	<Group label="Général">
-		<Item href="/app/{page.params.dog}/menu/carnet" icon={icons.carnet}>Carnet médical</Item>
-		<Item href="/app/{page.params.dog}/menu/coordonnees" icon="icon-[ri--user-line]"
-			>Vos coordonnées</Item
-		>
-		<Item href="/app/{page.params.dog}/menu/famille" icon="icon-[ri--group-line]">Famille</Item>
-	</Group>
-	<Group label="Système">
-		<Item icon="icon-[ri--notification-3-line]">Notifications</Item>
-		<Item icon="icon-[ri--accessibility-line]">Accessibilité</Item>
-		<Item icon="icon-[ri--notification-3-fill]">Support</Item>
-	</Group>
+		<div class="space-y-3x pt-2x">
+			<Group label="Général">
+				<Item href="/app/{page.params.dog}/menu/carnet" icon={icons.carnet}>Carnet médical</Item>
+				<Item href="/app/{page.params.dog}/menu/coordonnees" icon="icon-[ri--user-line]"
+					>Vos coordonnées</Item
+				>
+				<Item href="/app/{page.params.dog}/menu/famille" icon="icon-[ri--group-line]">Famille</Item>
+			</Group>
+			<Group label="Système">
+				<Item href="/app/{page.params.dog}/menu/404" icon="icon-[ri--notification-3-line]">
+					Notifications
+				</Item>
+				<Item href="/app/{page.params.dog}/menu/404" icon="icon-[ri--information-2-line]"
+					>Support</Item
+				>
+				<Item href="/app/{page.params.dog}/menu/404" icon="icon-[ri--accessibility-line]"
+					>Accessibilité</Item
+				>
+			</Group>
+		</div>
+	</div>
 </div>
 
 <!-- <div class=" min-h-56 bg-white p-3x">
