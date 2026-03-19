@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import Stats from './stats.svelte';
 
 	const { children } = $props();
 
@@ -12,18 +13,25 @@
 	);
 </script>
 
+<div class="fixed top-5 left-5">
+	<Stats />
+</div>
 <div class="grid grid-rows-[auto_1fr] gap-0.5">
-	<div class="flex justify-center">
-		<a href={toggle_href} class="card relative flex gap-3 p-3 text-2xl" title="toggle-view">
-			<div class={['icon-[ri--road-map-line]', !is_map && 'opacity-60', 'transition']}></div>
-			<div class={['icon-[ri--camera-4-line]', is_map && 'opacity-60', 'transition']}></div>
+	<div class="flex justify-center" style="view-transition-name: toggle-track;">
+		<a
+			href={toggle_href}
+			class="card relative flex gap-3 p-3 text-2xl shadow-xs"
+			title="toggle-view"
+		>
 			<div
 				class={[
-					'corner absolute top-1.5 left-1.5 size-9 bg-black/15',
+					'corner absolute top-1.5 left-1.5 size-9 border bg-active shadow-xs',
 					is_map ? '' : 'translate-x-9',
 					'transition'
 				]}
 			></div>
+			<div class={['icon-[ri--road-map-line]', !is_map && 'opacity-60', 'transition']}></div>
+			<div class={['icon-[ri--camera-4-line]', is_map && 'opacity-60', 'transition']}></div>
 		</a>
 	</div>
 	<div class="card fixed inset-0 -z-10">

@@ -43,11 +43,11 @@
 	style="view-transition-name: nav;"
 >
 	<div
-		class="pointer-events-none absolute -right-2x -bottom-2x -left-2x h-64 bg-linear-to-b from-transparent to-white"
+		class="pointer-events-none absolute -right-2x -bottom-2x -left-2x h-64 bg-linear-to-b from-transparent to-white/60"
 	></div>
 	<div class="flex gap-2x">
 		<div class="">
-			<Dogs expanded={expanded_dogs} />
+			<Dogs />
 		</div>
 		<div class="flex-col- mt-2 flex gap-2x">
 			{#each sub_buttons as { icon, onclick }}

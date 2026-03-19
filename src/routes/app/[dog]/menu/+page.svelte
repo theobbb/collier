@@ -27,11 +27,15 @@
 		style="view-transition-name: backdrop;"
 	></a>
 	<div class=" z-30 min-h-screen bg-background pt-3x">
-		<Title icon="icon-[ri--menu]">Menu</Title>
+		<!-- <Title icon="icon-[ri--menu-line]">Menu</Title> -->
 
 		<div class="space-y-3x pt-2x">
-			<Group label="Général">
+			<Group label="Chien(s)">
+				<Item href="/app/{page.params.dog}/menu/nom" icon={icons.carnet}>Nom</Item>
+				<Item href="/app/{page.params.dog}/menu/avatar" icon="icon-[ri--user-line]">Avatar</Item>
 				<Item href="/app/{page.params.dog}/menu/carnet" icon={icons.carnet}>Carnet médical</Item>
+			</Group>
+			<Group label="Général">
 				<Item href="/app/{page.params.dog}/menu/coordonnees" icon="icon-[ri--user-line]"
 					>Vos coordonnées</Item
 				>

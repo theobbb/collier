@@ -5,7 +5,7 @@
 	import { data, type Dog } from '$lib/data.svelte';
 	import { dev } from '$app/environment';
 
-	const PAUSED = dev && false;
+	const PAUSED = dev && true;
 
 	type WalkingDog = Dog & {
 		speed: number;
@@ -56,10 +56,10 @@
 	const CENTER: [number, number] = [-73.562185, 45.512756];
 
 	const paths: [number, number][][] = [
-		generateSquarePath(CENTER, 0.006, 0.003, 0.001, 45),
-		generateSquarePath(CENTER, 0.004, 0, 0, 0),
+		generateSquarePath(CENTER, 0.006, 0.003, 0.001, 60),
+		generateSquarePath(CENTER, 0.004, 0, 0, 50),
 
-		generateSquarePath(CENTER, 0.003, -0.003, -0.002, 15)
+		generateSquarePath(CENTER, 0.003, -0.003, -0.002, 70)
 	];
 	const speeds = [1.5, 0.4, 1];
 
@@ -70,33 +70,6 @@
 			path: paths[i % paths.length]
 		}))
 	);
-
-	// const dogs: WalkingDog[] = [
-	// 	{
-	// 		name: 'Biscuit',
-	// 		emoji: '🐕',
-	// 		color: '#e85d26',
-	// 		speed: 1,
-	// 		// Standard square
-	// 		path: generateSquarePath(CENTER, 0.004, 0, 0, 0)
-	// 	},
-	// 	{
-	// 		name: 'Mochi',
-	// 		emoji: '🐩',
-	// 		color: '#7c5cdb',
-	// 		speed: 1.6,
-	// 		// Offset, larger, and rotated 45 degrees (makes a diamond)
-	// 		path: generateSquarePath(CENTER, 0.006, 0.003, 0.001, 45)
-	// 	},
-	// 	{
-	// 		name: 'Rex',
-	// 		emoji: '🦮',
-	// 		color: '#2a9d5c',
-	// 		speed: 0.8,
-	// 		// Offset, smaller, rotated 15 degrees
-	// 		path: generateSquarePath(CENTER, 0.003, -0.003, -0.002, 15)
-	// 	}
-	// ];
 
 	function lerp(a: [number, number], b: [number, number], t: number): [number, number] {
 		return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t];
@@ -118,12 +91,12 @@
 		const el = document.createElement('div');
 		el.className = 'dog-marker';
 		el.innerHTML = `
-      <div class="dog-bubble" style="--dog-color: ${dog.color}">
+      <div class="dog-bubble card">
         <svg height={48} height={48}>
             <use href="/avatars.svg#avatar-${dog.avatar}" />
         </svg>
       </div>
-      <div class="dog-label">${dog.name}</div>
+      
     `;
 		return el;
 	}
@@ -208,7 +181,7 @@
 					source: id,
 					layout: { 'line-join': 'round', 'line-cap': 'round' },
 					paint: {
-						'line-color': dog.color,
+						'line-color': 'black',
 						'line-width': 2,
 						'line-opacity': 0.5,
 						'line-dasharray': [3, 4]
@@ -262,42 +235,4 @@
 
 <style>
 	/* Remove MapLibre default controls chrome */
-	:global(.maplibregl-ctrl-logo),
-	:global(.maplibregl-ctrl-attrib) {
-		opacity: 0 !important;
-	}
-
-	/* ── Markers (injected into DOM, must be global) ── */
-	:global(.dog-marker) {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 4px;
-		cursor: default;
-		user-select: none;
-	}
-
-	:global(.dog-bubble) {
-		position: relative;
-		width: 36px;
-		height: 36px;
-		border-radius: 50%;
-		background: #f5f4f0;
-		border: 2px solid var(--dog-color);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
-	}
-
-	:global(.dog-label) {
-		font-size: 0.58rem;
-		letter-spacing: 0.04em;
-		color: #1a1a1a;
-		background: #f5f4f0;
-		border: 1px solid #d8d6cf;
-		padding: 1px 6px;
-		border-radius: 3px;
-		white-space: nowrap;
-	}
 </style>

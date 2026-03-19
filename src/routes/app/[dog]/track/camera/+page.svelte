@@ -58,7 +58,7 @@
 	playsinline
 	preload="auto"
 	class={[
-		' corner  absolute  inset-0 h-full w-full object-cover p-1 opacity-0',
+		'absolute inset-0 h-full w-full object-cover opacity-0',
 		mounted && 'opacity-100',
 		'transition duration-300 ease-in'
 	]}

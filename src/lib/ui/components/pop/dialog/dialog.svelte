@@ -39,7 +39,7 @@
 
 {#if pop.open}
 	<dialog use:open closedby="any" class={['card m-auto w-[calc(100vw-4.5rem)]']} {onclose}>
-		<div class="flex flex-col gap-3x bg-background p-3x">
+		<div class="gap-3x- flex flex-col bg-background p-3x">
 			{@render children()}
 		</div>
 	</dialog>

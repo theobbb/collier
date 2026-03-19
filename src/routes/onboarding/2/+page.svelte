@@ -1,21 +1,11 @@
 <script lang="ts">
 	import { data } from '$lib/data.svelte';
-	import Avatar from '$lib/ui/components/avatar.svelte';
-	import Dog from '$lib/ui/components/dog-card.svelte';
+	import Avatar from '$lib/ui/templates/avatar.svelte';
 
 	//let selected: number | null = $state(1);
 </script>
 
-<div class="col-span-full px-3x py-3x text-xl">
-	{data.dogs[1].name} a besoin d’un avatar.
-</div>
-<div class="grid grid-cols-3 gap-1x">
-	{#each { length: 30 } as _, avatar_i}
-		<a class="corner bg-surface p-2x" href="/onboarding/3?avatar={avatar_i}">
-			<Avatar index={avatar_i} size="full" />
-		</a>
-	{/each}
-</div>
+<Avatar dog={data.dogs[1]} onboarding />
 
 <!-- {#if selected != null}
 	<div class="fixed right-0 bottom-0 left-0">

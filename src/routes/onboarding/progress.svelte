@@ -10,7 +10,10 @@
 </script>
 
 {#if step > 0}
-	<div class="corner mb-4x border bg-surface px-3x py-2x">
+	<div
+		class="corner mb-4x border bg-surface px-3x py-2x"
+		style="view-transition-name: onboarding-progress;"
+	>
 		<div class="mb-2x flex items-center justify-between text-sm font-medium">
 			<div>Configuration</div>
 			<div>{Math.round(progress * 100)}%</div>
