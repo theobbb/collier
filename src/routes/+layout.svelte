@@ -14,6 +14,10 @@
 		if (!document.startViewTransition) return;
 		if (navigation.from?.route.id === navigation.to?.route.id) return;
 
+		const from_id = navigation.from?.route.id;
+		const to_id = navigation.to?.route.id;
+		if (from_id?.startsWith('/app/[dog]/track') && to_id?.startsWith('/app/[dog]/track')) return;
+
 		const find_route_index = (route_id: string) => {
 			const menu_route = '/app/[dog]/menu';
 			if (route_id.startsWith(menu_route) && route_id.length > menu_route.length) return 100;
@@ -21,9 +25,8 @@
 			if (route_id.startsWith('/onboarding')) {
 				const step = Number(route_id.split('/').pop() || 0);
 				console.log(step);
-				return 100 + step;
+				return -100 + step;
 			}
-			const onboarding_route = '/onboarding';
 			return route_order.findIndex((r) => route_id.startsWith(r));
 		};
 

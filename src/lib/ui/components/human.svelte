@@ -9,7 +9,10 @@
 		class="corner flex size-6 items-center justify-center"
 		style="background-color: {human.color};"
 	>
-		<div class="text-sm font-medium text-white/80 uppercase">{human.name[0]}</div>
+		<!-- <div class="icon-[ri--user-line] text-sm text-white"></div> -->
+		<div class="text-sm font-medium text-white/80 uppercase">
+			{human.name[0]}
+		</div>
 	</div>
 	{#if name}
 		<div>{human.name}</div>

@@ -14,27 +14,20 @@
 	let expanded_dogs = $state(false);
 
 	const links = [
+		{ name: 'Accueil', href: 'dashboard', icon: 'icon-[ri--home-line]' },
+
 		{ name: 'Bilan', href: 'bilan', icon: 'icon-[ri--dashboard-3-line]' },
-		{ name: 'Carte', href: 'track/map', icon: 'icon-[ri--send-plane-fill]' },
-		{ name: 'Journal', href: 'journal', icon: 'icon-[ri--book-open-line]' }
+		{ name: 'Carte', href: 'track/map', icon: 'icon-[ri--map-pin-2-line]' },
+		{ name: 'Journal', href: 'journal', icon: 'icon-[ri--book-line]' }
 		// { name: 'Menu', href: 'menu', icon: 'icon-[ri--menu-line]' }
 	];
-
+	const current_link_i = $derived(links.findIndex((l) => l.href.startsWith(param)));
 	const sub_buttons = [
-		// {
-		// 	icon: 'icon-[ri--arrow-right-s-line]',
-		// 	onclick: () => {
-		// 		expanded_dogs = !expanded_dogs;
-		// 	}
-		// },
 		{ icon: 'icon-[tabler--school-bell]', onclick: () => {} },
 		{ icon: 'icon-[ri--mic-line]', onclick: () => {} }
 	];
-
-	// const menu_open = $derived(page.route.id?.split('/')?.[3] == 'menu');
 </script>
 
-<!-- <div class="absolute inset-0 bg-linear-to-b from-transparent to-black/5"></div> -->
 <nav
 	class={[
 		'relative m-2x flex w-full items-end justify-between',
@@ -49,7 +42,7 @@
 		<div class="">
 			<Dogs />
 		</div>
-		<div class="flex-col- mt-2 flex gap-2x">
+		<!-- <div class="flex-col- mt-2 flex gap-2x">
 			{#each sub_buttons as { icon, onclick }}
 				<button
 					class="card transparent pointer-events-auto flex size-11 items-center justify-center text-2xl shadow-xs backdrop-blur-xl"
@@ -59,29 +52,27 @@
 					<span class={[icon]}></span>
 				</button>
 			{/each}
-		</div>
+		</div> -->
 	</div>
 
-	<div class="flex-col- -ml-24 flex gap-2x">
+	<div class="card gap-2x- -ml-24- relative flex">
+		<!-- <div
+			class="corner absolute size-12 bg-active transition"
+			style="transform: translateX({current_link_i * 100}%)"
+		></div> -->
+
 		{#each links as { name, href, icon }}
 			<a
 				href="/app/{page.params.dog}/{href}"
 				class={[
-					'card transparent pointer-events-auto flex size-15 flex-col items-center justify-center gap-px px-2x  pb-1.5',
-					href.startsWith(param) ? 'bg-active! ' : ''
+					'  corner pointer-events-auto flex size-15 flex-col items-center justify-center gap-px px-2x  pb-1.5',
+					href.startsWith(param) ? 'bg-accent text-background' : '',
+					'transition'
 				]}
 			>
-				<span class={[icon, 'mt-1.5 shrink-0 text-3xl']}></span>
-				<span class="text-xs font-medium tracking-tight">{name}</span>
+				<span class={[icon, 'mt-2.5 shrink-0 text-3xl']}></span>
+				<span class="mt-0.5 mb-0.5 text-xs font-semibold tracking-tight">{name}</span>
 			</a>
 		{/each}
 	</div>
 </nav>
-
-<style>
-	/* ::view-transition-old(nav),
-	::view-transition-new(nav) {
-		animation-duration: 3000ms;
-		animation-timing-function: ease-in-out;
-	} */
-</style>

@@ -5,7 +5,7 @@
 	import { data, type Dog } from '$lib/data.svelte';
 	import { dev } from '$app/environment';
 
-	const PAUSED = dev && true;
+	const PAUSED = dev && false;
 
 	type WalkingDog = Dog & {
 		speed: number;

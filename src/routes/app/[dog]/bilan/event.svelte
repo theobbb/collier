@@ -11,42 +11,48 @@
 		$props();
 </script>
 
-<div class="corner flex w-full flex-col gap-2 border border-black/20 bg-surface px-3x py-2x">
+<div class="corner flex w-full flex-col gap-4 border border-black/20 bg-surface px-3x py-2x">
 	<div class="flex items-center justify-between">
 		<div class="flex items-center gap-1">
-			<div class="corner bg-black/10- flex aspect-square size-6 items-center justify-center">
-				<div class={[icon, 'text-']}></div>
+			<div class="corner flex aspect-square size-6 items-center justify-center">
+				<div class={[icon, 'text-xl']}></div>
 			</div>
-			<div class="text-sm font-medium">{name}</div>
+			<div class="font-medium">{name}</div>
 		</div>
-		<div>
-			<div class="icon-[ri--more-line]"></div>
+		<div class="">
+			<div class="icon-[ri--arrow-right-s-line] text-xl text-black/30"></div>
 		</div>
 	</div>
 	<div class="flex w-full flex-col gap-1x">
-		<div>
-			<div class="corner relative h-3 w-full overflow-hidden bg-black/15">
+		<div class="relative">
+			<div class="corner relative h-4.5 w-full overflow-hidden bg-black/5">
 				{#each timeline as [start, end]}
 					<div
-						class="absolute h-full w-full origin-left bg-progress"
-						style="transform: scaleX({(end - start) / 100}); left: {start}%;"
+						class="corner absolute h-full w-full origin-left bg-progress"
+						style="width: {(end - start) / 1.5}%; left: {start / 1.5}%;"
 					></div>
 				{/each}
 			</div>
+			<div class="absolute top-0 left-2/3 h-full w-0.5 bg-black/80"></div>
+			<div class="absolute top-0 grid h-full w-full grid-cols-12">
+				{#each { length: 12 } as _, i}
+					<div class="border-black/20- h-full border-r last:hidden"></div>
+				{/each}
+			</div>
 		</div>
-		<div class="mt-1x flex w-full items-center justify-between gap-2 font-medium">
-			<div class="flex gap-3x text-base">
+		<div class="mt-3x flex w-full items-end justify-between gap-2 font-medium">
+			<div class="flex items-end gap-3x">
 				{@render children()}
 			</div>
 			<div
 				class={[
-					'corner flex items-center border pr-1x text-xs',
-					Math.sign(delta) == 1 ? 'bg-green-500/50' : 'bg-red-500/50'
+					'corner flex items-center border py-0.5 pr-1.5 pl-0.5 text-xs',
+					Math.sign(delta) == 1 ? 'bg-green-400/40' : 'bg-red-400/40'
 				]}
 			>
 				<div
 					class={[
-						'-mr-0.5 icon-[ri--arrow-drop-down-line] text-sm',
+						'-mr-0.5 icon-[ri--arrow-drop-down-line] text-base',
 						Math.sign(delta) == 1 && 'rotate-180'
 					]}
 				></div>

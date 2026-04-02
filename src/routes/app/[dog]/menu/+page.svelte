@@ -26,7 +26,7 @@
 		class={['backdrop fixed top-0 right-0 bottom-0 left-5x z-20 -translate-x-full']}
 		style="view-transition-name: backdrop;"
 	></a>
-	<div class=" z-30 min-h-screen bg-background pt-3x">
+	<div class="z-30 bg-background pt-3x">
 		<!-- <Title icon="icon-[ri--menu-line]">Menu</Title> -->
 
 		<div class="space-y-3x pt-2x">

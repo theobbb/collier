@@ -4,7 +4,7 @@
 	const step = $derived(Number(page.url.pathname.split('/')?.[2]?.[0]));
 	const total_steps = 5;
 
-	const progress = $derived(step / total_steps);
+	const progress = $derived((step - 1) / total_steps);
 
 	const skipable = [3, 4, 5];
 </script>

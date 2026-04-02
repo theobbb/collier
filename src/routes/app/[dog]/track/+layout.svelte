@@ -13,7 +13,15 @@
 	);
 </script>
 
-<div class="fixed top-5 left-5">
+<div class="pointer-events-none fixed right-0 bottom-44 left-0">
+	<div class="flex justify-center">
+		<button class="corner flex items-center justify-center border bg-gray-100 p-3x shadow-sm">
+			<div class="icon-[ri--mic-line] text-5xl"></div>
+		</button>
+	</div>
+</div>
+
+<div class="fixed top-5 left-5" style="view-transition-name: track-stats;">
 	<Stats />
 </div>
 <div class="grid grid-rows-[auto_1fr] gap-0.5">

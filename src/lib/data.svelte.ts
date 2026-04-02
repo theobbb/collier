@@ -1,3 +1,4 @@
+import { SvelteSet } from 'svelte/reactivity';
 import { seed } from './seed';
 
 export type Dog = {
@@ -43,7 +44,7 @@ export type Data = {
 	version: string;
 };
 
-const STORAGE_VERSION = '1.4';
+const STORAGE_VERSION = '1.6';
 
 const STORAGE_KEY = 'DOGS';
 
@@ -58,6 +59,8 @@ function get_saved(): Data {
 	return { ...seed, version: STORAGE_VERSION };
 }
 export const data: Data = $state(get_saved());
+
+export const closed_infos = new SvelteSet();
 
 // 3. Auto-save effect
 // $effect.root ensures this listener stays alive globally

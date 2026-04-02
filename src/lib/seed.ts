@@ -67,10 +67,10 @@ export const seed: Omit<Data, 'version'> = {
 	],
 	current_dog: 1,
 	family: [
-		{ name: 'Papa William', color: '#EA4335' },
-		{ name: 'Maman', color: '#34A853' },
-		{ name: 'Georgie', color: '#4285F4' },
-		{ name: 'Princesse fée', color: '#FBBC05' }
+		{ name: 'Papa William', color: '#80A663' },
+		{ name: 'Maman', color: '#E09C93' },
+		{ name: 'Georgie', color: '#8AAAC4' },
+		{ name: 'Princesse fée', color: '#C6B4D9' }
 	],
 	contact: {
 		name: 'Papa William',

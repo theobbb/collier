@@ -4,7 +4,6 @@
 	import Human from '$lib/ui/components/human.svelte';
 	import Title from '$lib/ui/components/title.svelte';
 	import CodeQr from '../components/code-qr.svelte';
-	import Input from '../components/form/fields/input.svelte';
 	import Dialog from '../components/pop/dialog/dialog.svelte';
 	import { Pop } from '../components/pop/pop-context.svelte';
 

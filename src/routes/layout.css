@@ -8,24 +8,26 @@
 	--spacing-4x: calc(var(--spacing) * 8);
 	--spacing-5x: calc(var(--spacing) * 16);
 
-	--color-background: rgb(238, 238, 238);
+	--color-background: rgb(236, 237, 238);
 	--color-surface: rgb(244, 244, 244);
 	--color-foreground: rgb(31, 31, 31);
 
-	--color-muted: rgb(66, 66, 66);
+	--color-muted: rgba(0, 0, 0, 0.7);
 
 	--color-surface-muted: rgb(198, 198, 198);
 
 	--color-meal: oklch(89.2% 0.058 10.001);
 	--color-walk: oklch(93.8% 0.127 124.321);
 
-	--color-active: yellow;
+	--color-active: #becbee;
 
 	--color-accent-1: oklch(88.2% 0.059 254.128);
 	--color-accent-2: oklch(70.7% 0.165 254.624);
 	--color-accent-3: oklch(62.3% 0.214 259.815);
 
-	--color-progress: oklch(72.3% 0.219 149.579);
+	--color-progress: #98e666;
+
+	--color-accent: #415aa0;
 }
 
 @layer base {
